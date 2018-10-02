@@ -7,8 +7,8 @@ class ApplicationController < ActionController::Base
   
   def require_user_logged_in
     unless logged_in?
-     redirecrt_to login_url
-    end
+     redirect_to login_url
+    end 
   end
   
   def read(result)

@@ -1,9 +1,10 @@
 class UsersController < ApplicationController
   before_action :require_user_logged_in,only:[:show]
   def show
-    @user = user.find(params[:id])
+    @user = User.find(params[:id])
     @items = @user.items.uniq
     @count_want = @user.want_items.count
+    @count_have = @user.have_items.count
   end
 
   def new
@@ -15,7 +16,7 @@ class UsersController < ApplicationController
 
     if @user.save
       flash[:success] = 'ユーザを登録しました。'
-      redirect_to @user
+      redirect_to @user 
     else
       flash.now[:danger] = 'ユーザの登録に失敗しました。'
       render :new
